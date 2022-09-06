@@ -30,6 +30,33 @@ TEST_GROUP(PidControl)
   }
 };
 
+TEST(PidControl, PidClearStoredErrors)
+{
+  float setpoint = 1.0, system_feedback = 0.0; 
+
+  // Calculate outputs to compare 
+  float out1 = pidTest.calculate(setpoint, system_feedback);
+  setpoint = 3.0; 
+  float out2 = pidTest.calculate(setpoint, system_feedback);
+
+  // Clear stored Errors
+  pidTest.clearStoredErrors();
+
+  setpoint = 1.0;
+  float out3 = pidTest.calculate(setpoint, system_feedback);
+
+  pidTest.clearStoredErrors();
+
+  setpoint = 3.0; 
+  float out4 = pidTest.calculate(setpoint, system_feedback);
+
+  // Check out1 == out3 to check cleared stored values
+  CHECK(out1 == out3);
+  // check internal variables cleared
+  CHECK(out2 != out4);
+
+}
+
 TEST(PidControl, PidSingleInput)
 {
   float setpoint = 1.0, system_feedback = 0.0;
@@ -52,7 +79,7 @@ TEST(PidControl, PidSingleInput)
   
   float pidOutTest = pidTest.calculate(setpoint, system_feedback);
 
-  std::cout << "PidSingleInput pidOut1, pidHardcode 1: " << pidOutTest << ", " << pidOutHardcode <<'\n';
+  //std::cout << "PidSingleInput pidOut1, pidHardcode 1: " << pidOutTest << ", " << pidOutHardcode <<'\n';
   
   DOUBLES_EQUAL(pidOutHardcode, pidOutTest,compareThreshold);
 
@@ -82,7 +109,7 @@ TEST(PidControl, PidMultipleInput)
   
   float pidOutTest = pidTest.calculate(setpoint, system_feedback);
 
-  std::cout << "PidMultipeInput pidOut1, pidHardcode 1: " << pidOutTest << ", " << pidOutHardcode <<'\n';
+  //std::cout << "PidMultipeInput pidOut1, pidHardcode 1: " << pidOutTest << ", " << pidOutHardcode <<'\n';
   
   DOUBLES_EQUAL(pidOutHardcode, pidOutTest,compareThreshold);
 

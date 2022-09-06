@@ -17,10 +17,14 @@ public:
    * @param kd
    * @param ki 
    */
-  pidControl(float dt, float max, float min, float kp, float kd, float ki);
-
-
+  pidControl(float dt, float max, float min, float kp, float ki, float kd);
+  /** 
+   * Calculate Method 
+   * @param setpoint : PID Controller setpoint (reference value)
+   * @param system_feedback : PID Controller current system value
+   */
   float calculate(float setpoint, float system_feedback); 
+  void  clearStoredErrors(); 
 
   // Deconstructor 
   //~pidControl(); 

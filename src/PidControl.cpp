@@ -40,3 +40,9 @@ float pidControl::calculate(float setpoint, float system_feedback)
   // Return PID control output
   return pidOutput;
 }
+
+void pidControl::clearStoredErrors()
+{
+  _integralSum = 0; 
+  _previousError = 0; 
+}

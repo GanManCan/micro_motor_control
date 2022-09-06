@@ -2,6 +2,7 @@
 lib/
 doxy_output/
 objs/
+git-credential-manager/
 
 # Test objs
 *_tests
