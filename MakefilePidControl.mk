@@ -3,7 +3,7 @@
 SILENCE = @
 
 #---- Outputs ----#
-COMPONENT_NAME = MotorMath
+COMPONENT_NAME = PidControl
 TARGET_LIB = \
 	lib/lib$(COMPONENT_NAME).a
 	
@@ -24,13 +24,15 @@ CPPUTEST_CFLAGS += -Wextra
 CPPUTEST_CFLAGS += -pedantic 
 CPPUTEST_CFLAGS += -Wstrict-prototypes
 
- #SRC_DIRS = \
+CPPUTEST_EXE_FLAGS += -c
+
+# SRC_DIRS = \
  	./src\
 
-SRC_FILES = ./src/MotorMath.cpp
+SRC_FILES = ./src/PidControl.cpp
 
 TEST_SRC_DIRS = \
-	./tests/MotorMath \
+	./tests/PidControl\
 	./tests\
 	
 INCLUDE_DIRS =\
