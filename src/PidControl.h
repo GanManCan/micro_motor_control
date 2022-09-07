@@ -19,7 +19,7 @@ public:
    */
   pidControl(float dt, float max, float min, float kp, float ki, float kd);
   /** 
-   * Calculate Method 
+   * Clear internal integral and derivative stored errors
    * @param setpoint : PID Controller setpoint (reference value)
    * @param system_feedback : PID Controller current system value
    */

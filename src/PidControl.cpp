@@ -34,6 +34,11 @@ float pidControl::calculate(float setpoint, float system_feedback)
   // Sum PID controls
   float pidOutput = pControl + iControl + dControl;
 
+  if(pidOutput > _max)
+    pidOutput = _max;
+  else if(pidOutput < _min)
+    pidOutput = _min; 
+
   // Save error to previous error
   _previousError = error; 
 

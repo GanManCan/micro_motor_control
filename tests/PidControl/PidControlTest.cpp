@@ -57,6 +57,24 @@ TEST(PidControl, PidClearStoredErrors)
 
 }
 
+TEST(PidControl, PidMaxLimitCheck)
+{
+  float setpoint = 10.0*max/kp/dt;
+  float system_feedback = 0.0;
+  float maxCheck = pidTest.calculate(setpoint, system_feedback);
+
+  DOUBLES_EQUAL(max, maxCheck, compareThreshold);
+}
+
+TEST(PidControl, PidMinLimitCheck)
+{
+  float setpoint = -10.0*max/kp/dt;
+  float system_feedback = 0.0;
+  float minCheck = pidTest.calculate(setpoint, system_feedback);
+
+  DOUBLES_EQUAL(min, minCheck, compareThreshold);
+}
+
 TEST(PidControl, PidSingleInput)
 {
   float setpoint = 1.0, system_feedback = 0.0;
