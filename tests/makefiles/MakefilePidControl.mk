@@ -29,15 +29,17 @@ CPPUTEST_EXE_FLAGS += -c
 # SRC_DIRS = \
  	./src\
 
-SRC_FILES = ./src/PidControl.cpp
+SRC_FILES = ./src/PidControl.cpp\
 
-TEST_SRC_DIRS = \
-	./tests/PidControl\
-	./tests\
+#TEST_SRC_DIRS = \
+
+TEST_SRC_FILES = \
+	$(PROJECT_HOME_DIR)/tests/AllTests.cpp\
+	$(PROJECT_HOME_DIR)/tests/src/PidControlTest.cpp\
 	
 INCLUDE_DIRS =\
   $(CPPUTEST_HOME)/include/\
-  ./src\
+  $(PROJECT_HOME_DIR)/src\
   
   
 ifeq ($(CPPUTEST_HOME),)

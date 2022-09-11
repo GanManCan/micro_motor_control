@@ -24,18 +24,20 @@ CPPUTEST_CFLAGS += -Wextra
 CPPUTEST_CFLAGS += -pedantic 
 CPPUTEST_CFLAGS += -Wstrict-prototypes
 
+CPPUTEST_EXE_FLAGS += -c
+
  #SRC_DIRS = \
  	./src\
 
-SRC_FILES = ./src/MotorMath.cpp
+SRC_FILES = ./src/MotorMath.cpp\
 
-TEST_SRC_DIRS = \
-	./tests/MotorMath \
-	./tests\
+TEST_SRC_FILES = \
+	$(PROJECT_HOME_DIR)/tests/AllTests.cpp \
+	$(PROJECT_HOME_DIR)/tests/src/MotorMathTest.cpp\
 	
 INCLUDE_DIRS =\
   $(CPPUTEST_HOME)/include/\
-  ./src\
+  $(PROJECT_HOME_DIR)/src\
   
   
 ifeq ($(CPPUTEST_HOME),)

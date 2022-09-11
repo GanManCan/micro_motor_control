@@ -1,15 +1,15 @@
 
 all:
-	make -f MakefileMotorMath.mk 
-	make -f MakefilePidControl.mk
+	make -f ./tests/makefiles/MakefileMotorMath.mk 
+	make -f ./tests/makefiles/MakefilePidControl.mk
 
 clean:
-	make -f MakefileMotorMath.mk clean
-	make -f MakefilePidControl.mk clean
+	make -f ./tests/makefiles/MakefileMotorMath.mk clean
+	make -f ./tests/makefiles/MakefilePidControl.mk clean
 
-motormath:
-	make -f MakefileMotorMath.mk
+motormathTest:
+	make -f ./tests/makefiles/MakefileMotorMath.mk
 
-pidControl:
-	make -f MakefilePidControl.mk 
+pidControlTest:
+	make -f ./tests/makefiles/MakefilePidControl.mk 
 
