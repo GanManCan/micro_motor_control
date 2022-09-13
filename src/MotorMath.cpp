@@ -28,3 +28,4 @@ float motorMath::clarkeTransformBeta(float phaseA,float phaseB, float phaseC)
   float phaseBeta = 2.0*sqrt(3.0)/3.0*(phaseB/2.0-phaseC/2.0);
   return phaseBeta;
 }
+

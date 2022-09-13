@@ -1,7 +1,5 @@
 /**
 * @file
-* @author Jan Doe <jandoe@example.com>
-* @version 1.0
 *
 * @section LICENSE
 *
@@ -23,13 +21,20 @@ class motorMath
 public:
   
   /**
-   * Calcualte the dq transofrm of two voltage inputs
+   * Calcualte the dq transofrm D Phase
    * @param phaseAlpha,phaseBeta Input values.  
   */
   float dqTransformPhaseD(float phaseAlpha,float phaseBeta,float thetaRadians);
+
+  /**
+   * Calculate the the dq transform Q Phase 
+   * @param phaseAlpha, phaseBeta, thetaRadians
+  */ 
   float dqTransformPhaseQ(float phaseAlpha,float phaseBeta,float thetaRadians);   
   float clarkeTransformAlpha(float phaseA,float phaseB,float phaseC); 
   float clarkeTransformBeta(float phaseA,float phaseB,float phaseC); 
+
+  //float calculate
 
 private:
 
