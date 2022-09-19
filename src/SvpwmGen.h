@@ -25,9 +25,12 @@ public:
   float calculateSVPWM(float vAlpha, float vBeta); 
 
 
+
 private: 
   float _pwmFreq; 
   float _vdc; 
+  float _alpha; 
+  float _sector; 
 };
 
 #endif //SVPWMGEN_H

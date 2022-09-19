@@ -4,6 +4,10 @@ doxy_output/
 objs/
 git-credential-manager/
 
+# sublime files
+*.sublime-project
+*.sublime-workspace
+
 # Test objs
 *_tests
 

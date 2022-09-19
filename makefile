@@ -2,7 +2,7 @@
 all:
 	make -f ./tests/makefiles/MakefileMotorMath.mk 
 	make -f ./tests/makefiles/MakefilePidControl.mk
-	make -f ./tests/makefiles/MakefileSvpwmGen.mk
+	make -f ./tests/makefiles/MakefileSvpwmBase.mk
 
 clean:
 	make -f ./tests/makefiles/MakefileMotorMath.mk clean
@@ -15,6 +15,6 @@ motormathTest:
 pidControlTest:
 	make -f ./tests/makefiles/MakefilePidControl.mk 
 
-svpwmGenTest:
-	make -f ./tests/makefiles/MakefileSvpwmGen.mk
+svpwmBaseTest:
+	make -f ./tests/makefiles/MakefileSvpwmBase.mk
 
