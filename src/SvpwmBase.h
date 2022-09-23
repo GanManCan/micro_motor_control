@@ -19,6 +19,7 @@
 #define SVPWMBASE_H
 
 #include <iostream>
+#include <cmath>
 
 
 template <typename T>
@@ -31,8 +32,7 @@ public:
   svpwmBase(const T& pwmFreq, const T& vdc)
   {
     _pwmFreq = pwmFreq;
-    _vdc = vdc; 
-    _angle = 0; 
+    _vdc = vdc;  
     _sector = 0; 
 
     std::cout << std::fixed; 
@@ -40,9 +40,37 @@ public:
 
   };
 
-  T calculateAngle()
+  /* Calculate Sector 
+  *   vref1 = Uq
+  *   vref2 = sin(60)Ud - sin(30)Uq
+  *   vref3 = -sin(60)Ud - sin(30)Uq
+  *  
+  *   N = sign(vref1)+ 2*sign(vref2) + 4*sign(vref4)
+  * 
+  *     N    | 1 | 2 | 3 | 4 | 5 | 6 |  
+  *   Sector | 1 | 5 | 0 | 2 | 3 | 4 |  
+  */
+  T calculateSector(const T& vDphase, const T& vQphase)
   {
     return 0; 
+  };
+
+  // angle = arctan(Vq/Vd)
+
+  T calculateAngle(const T& vDphase, const T& vQphase)
+  {
+    return 0; 
+  };
+
+  double calculateAngle(const double& vDphase, const double& vQphase)
+  {
+    return atan2(vDphase,vQphase);
+  };
+
+
+  T calculateAngle(const int& vDphase, const int& vQphase)
+  {
+    return atan2(vDphase,vQphase);
   };
 
 
