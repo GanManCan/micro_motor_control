@@ -32,7 +32,8 @@ public:
   svpwmBase(const T& pwmFreq, const T& vdc)
   {
     _pwmFreq = pwmFreq;
-    _vdc = vdc;  
+    _vdc = vdc; 
+    //_angle = 0; 
     _sector = 0; 
 
     std::cout << std::fixed; 
@@ -59,18 +60,13 @@ public:
 
   T calculateAngle(const T& vDphase, const T& vQphase)
   {
-    return 0; 
+    std::cout << "Invalid Input Type \n";
+    return 1; 
   };
 
-  double calculateAngle(const double& vDphase, const double& vQphase)
+  template<> double calculateAngle(const double& vDphase, const double& vQphase)
   {
-    return atan2(vDphase,vQphase);
-  };
-
-
-  T calculateAngle(const int& vDphase, const int& vQphase)
-  {
-    return atan2(vDphase,vQphase);
+    return 0.0; 
   };
 
 

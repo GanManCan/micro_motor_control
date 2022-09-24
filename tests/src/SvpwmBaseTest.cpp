@@ -34,10 +34,14 @@ TEST_GROUP(SvpwmBase)
 TEST(SvpwmBase, TestFloatAngle)
 {
   //float vQ = 1.0, vD = 1.0; 
-  int tempTest = svpwmBaseTestInt.calculateAngle(1, 1); 
+  uint32_t tempTest = svpwmBaseTestUint32.calculateAngle((uint32_t)1, (uint32_t)1); 
+  double tempFloat = svpwmBaseTestFloat.calculateAngle(1.0, 1.0);
 
-  std::cout << "Angle (Float): " << tempTest <<"\n";
+  std::cout << "Angle (uint32_t): " << tempTest <<"\n";
+  std::cout << "Angle (float): " << tempFloat <<"\n";
+
   
   LONGS_EQUAL(tempTest,1);
 }
+
 
