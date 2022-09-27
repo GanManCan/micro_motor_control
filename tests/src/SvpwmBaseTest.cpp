@@ -5,19 +5,22 @@
 //  multiple input test
 //  test min range limiting
 //  test max range limit
+//  Check that the types are limited to certain types
+
 
 #include "CppUTest/TestHarness.h"
 #include <cmath>
 #include "SvpwmBase.h"
 #include <iostream>
+#include <random>
 
 TEST_GROUP(SvpwmBase)
 {
-  double compareThreshold = 1e-10;
+  float compareThreshold = 1e-10;
 
-  double pwmFreq = 10.0, vdc = 100.0;
+  float pwmFreq = 10.0, vdc = 100.0;
 
-  svpwmBase<double> svpwmBaseTestFloat = svpwmBase(pwmFreq, vdc);
+  svpwmBase<float> svpwmBaseTestFloat = svpwmBase(pwmFreq, vdc);
   svpwmBase<uint32_t> svpwmBaseTestUint32 = svpwmBase((uint32_t)pwmFreq, (uint32_t)vdc);
   svpwmBase<int> svpwmBaseTestInt = svpwmBase(10, 100);
   
@@ -33,15 +36,24 @@ TEST_GROUP(SvpwmBase)
 
 TEST(SvpwmBase, TestFloatAngle)
 {
-  //float vQ = 1.0, vD = 1.0; 
-  uint32_t tempTest = svpwmBaseTestUint32.calculateAngle((uint32_t)1, (uint32_t)1); 
-  double tempFloat = svpwmBaseTestFloat.calculateAngle(1.0, 1.0);
+  //float angleHardCode = 0.0, angleFunction = 0;
+  float lowRandom = -1000;
+  float highRandom = 1000; 
 
-  std::cout << "Angle (uint32_t): " << tempTest <<"\n";
-  std::cout << "Angle (float): " << tempFloat <<"\n";
+  // Loop through random angle calculation tests
+  for(int i = 0; i<1000; i++){
 
+    float randomD = lowRandom+ static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(highRandom-lowRandom)));
+    float randomQ = lowRandom+ static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(highRandom-lowRandom)));
+
+    float angleHardCode = atan2f(randomQ, randomD);
+    float angleCalc = svpwmBaseTestFloat.calculateAngle(randomD, randomQ);
+    DOUBLES_EQUAL(angleHardCode, angleCalc, compareThreshold);
+
+    //std::cout << "RandomD, RandomQ: " << randomD << ", "<< randomQ <<"\n";
+  } //for (int )
   
-  LONGS_EQUAL(tempTest,1);
-}
+};
 
+//TEST(SvpwmBase, CompareFloatAndFixedAngle)
 

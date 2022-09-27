@@ -22,8 +22,7 @@
 #include <cmath>
 
 
-template <typename T>
-class svpwmBase
+template <class T> class svpwmBase
 {
 public:
 
@@ -56,18 +55,15 @@ public:
     return 0; 
   };
 
-  // angle = arctan(Vq/Vd)
+ 
 
   T calculateAngle(const T& vDphase, const T& vQphase)
   {
-    std::cout << "Invalid Input Type \n";
+    std::cout << "Run UndefinedType \n";
     return 1; 
   };
 
-  template<> double calculateAngle(const double& vDphase, const double& vQphase)
-  {
-    return 0.0; 
-  };
+
 
 
 private: 
@@ -75,6 +71,19 @@ private:
   T _vdc;  
   T _sector; 
  
+}; // template Class T
+
+/******* Template Methods Overrides *****************/
+
+
+// angle of point (vd,vq)
+template <>
+float svpwmBase<float>::calculateAngle(const float& vDphase, const float& vQphase)
+{
+  // Q phase is the Y axis
+  float tempAngle = atan2f(vQphase, vDphase);
+  return tempAngle;
 };
+
 
 #endif //SVPWMGEN_H
