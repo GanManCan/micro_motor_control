@@ -50,7 +50,6 @@ TEST(SvpwmBase, TestFloatAngle)
     float angleCalc = svpwmBaseTestFloat.calculateAngle(randomD, randomQ);
     DOUBLES_EQUAL(angleHardCode, angleCalc, compareThreshold);
 
-    //std::cout << "RandomD, RandomQ: " << randomD << ", "<< randomQ <<"\n";
   } //for (int )
   
 };
