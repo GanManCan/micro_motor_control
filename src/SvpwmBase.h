@@ -28,12 +28,13 @@ public:
 
   svpwmBase();
 
-  svpwmBase(const T& pwmFreq, const T& vdc)
+  svpwmBase(const T& pwmFreq, const T& vdc, const T& svpwmPeriod)
   {
     _pwmFreq = pwmFreq;
     _vdc = vdc; 
     //_angle = 0; 
     _sector = 0; 
+    _svpwmPeriod = svpwmPeriod;
 
     std::cout << std::fixed; 
     std::cout << "Pwm Freq: " << _pwmFreq << "\n";
@@ -63,6 +64,11 @@ public:
     return 1; 
   };
 
+  T calculateTa(const float& alpha)
+  {
+
+  };
+
 
 
 
@@ -70,8 +76,10 @@ private:
   T _pwmFreq; 
   T _vdc;  
   T _sector; 
+  T _svpwmPeriod;
  
 }; // template Class T
+
 
 /******* Template Methods Overrides *****************/
 
@@ -83,6 +91,13 @@ float svpwmBase<float>::calculateAngle(const float& vDphase, const float& vQphas
   // Q phase is the Y axis
   float tempAngle = atan2f(vQphase, vDphase);
   return tempAngle;
+};
+
+template<>
+float svpwmBase<float>::calculateTa(const float& alpha)
+{
+  float taCalc = 2/sqrt(3)*sin(alpha);
+  return taCalc; 
 };
 
 

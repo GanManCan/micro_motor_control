@@ -1,12 +1,10 @@
 /** Motor Math Tests **/
 
-// To-do List
-//  single input test
-//  multiple input test
-//  test min range limiting
-//  test max range limit
-//  Check that the types are limited to certain types
-
+/** To-do List
+* Test Fixed Point Angle Calculation (Single/Multiple)
+* Test Fixed Point Angle Overload
+* Check that the types are limited to certain types
+*/
 
 #include "CppUTest/TestHarness.h"
 #include <cmath>
@@ -18,11 +16,10 @@ TEST_GROUP(SvpwmBase)
 {
   float compareThreshold = 1e-10;
 
-  float pwmFreq = 10.0, vdc = 100.0;
+  float pwmFreq = 10'000.0, vdc = 100.0, svpwmPeriod = 2048.0;
 
-  svpwmBase<float> svpwmBaseTestFloat = svpwmBase(pwmFreq, vdc);
-  svpwmBase<uint32_t> svpwmBaseTestUint32 = svpwmBase((uint32_t)pwmFreq, (uint32_t)vdc);
-  svpwmBase<int> svpwmBaseTestInt = svpwmBase(10, 100);
+  svpwmBase<float> svpwmBaseTestFloat = svpwmBase(pwmFreq, vdc, svpwmPeriod);
+  svpwmBase<uint32_t> svpwmBaseTestUint32 = svpwmBase((uint32_t)pwmFreq, (uint32_t)vdc, (uint32_t)svpwmPeriod);
   
   void setup(){
     // Add setup code here   
@@ -54,5 +51,17 @@ TEST(SvpwmBase, TestFloatAngle)
   
 };
 
+TEST(SvpwmBase, TestFloatTimerSetpoints)
+{
+
+  //float taHardcode = sin()
+
+
+}
+
+TEST(SvpwmBase, TestFixedPointSingleAngle)
+{
+
+};
 //TEST(SvpwmBase, CompareFloatAndFixedAngle)
 
