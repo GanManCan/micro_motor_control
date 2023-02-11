@@ -103,10 +103,13 @@ public:
 
   float calculateAngleBound(const float& angle)
   {
+
+
     
     float returnAngle = 0;
 
     // Use if else vice fmod for speed
+    // Return 0 if out of bounds (<0 or > 360)
     if(angle < 0.0f) returnAngle = 0.0f; 
     else if(angle <= 60.0f) returnAngle = angle;
     else if(angle <= 120.0f) returnAngle = angle-60.0f;
