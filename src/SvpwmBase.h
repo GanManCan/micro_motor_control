@@ -22,6 +22,7 @@
 #include <cmath>
 
 
+
 template <class T> class svpwmBase
 {
 public:
@@ -48,8 +49,11 @@ public:
   *     N    | 1 | 2 | 3 | 4 | 5 | 6 |  
   *   Sector | 1 | 5 | 0 | 2 | 3 | 4 |  
   */
-  T calculateSector(const T& vDphase, const T& vQphase)
+  T calculateSector(const T& angle)
   {
+
+    if (angle <= 2)
+    _sector = 0; 
     return 0; 
   };
 
@@ -124,7 +128,26 @@ public:
 
   float calculateSector(const float& angle)
   {
-    return 0.0;
+    float returnSector = -1.0f;
+    float angle_mod = angle; 
+
+    
+
+    if(angle>360.f) angle_mod = fmod(angle_mod, 360.0f);
+
+    std::cout <<  "Angle Modulo = " << angle_mod <<"\n";
+
+    if(angle_mod <= 60.0f) returnSector = 1.0f;
+    else if(angle_mod <= 120.0f) returnSector = 2.0f;
+    else if(angle_mod <= 180.0f) returnSector = 3.0f;
+    else if(angle_mod <= 240.0f) returnSector = 4.0f;
+    else if(angle_mod <= 300.0f) returnSector = 5.0f;
+    else if(angle_mod <= 360.0f) returnSector = 6.0f;
+
+    std::cout << "Sector Test Value: " << returnSector << "\n"; 
+    
+    _sector = returnSector;
+    return returnSector;
   };
 
   float calculateTa(const float& alpha, const float& modIndex)

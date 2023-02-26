@@ -90,6 +90,34 @@ TEST(SvpwmBase, TestFloatAngleOutOfBounds)
   DOUBLES_EQUAL(testValue, 0.0, compareThreshold);
 }
 
+TEST(SvpwmBase, TestFloatCalculateSector)
+{
+  float testValue = svpwmBaseTestFloat.calculateSector(29.0f);
+  DOUBLES_EQUAL(testValue, 1.0, compareThreshold);
+
+  testValue = svpwmBaseTestFloat.calculateSector(81.1f);
+  DOUBLES_EQUAL(testValue, 2.0, compareThreshold);
+
+  testValue = svpwmBaseTestFloat.calculateSector(153.1f);
+  DOUBLES_EQUAL(testValue, 3.0, compareThreshold);
+
+  testValue = svpwmBaseTestFloat.calculateSector(202.4564f);
+  DOUBLES_EQUAL(testValue, 4.0, compareThreshold);
+
+  testValue = svpwmBaseTestFloat.calculateSector(286.32f);
+  DOUBLES_EQUAL(testValue, 5.0, compareThreshold);
+
+  testValue = svpwmBaseTestFloat.calculateSector(322.1231f);
+  DOUBLES_EQUAL(testValue, 6.0, compareThreshold);
+
+  testValue = svpwmBaseTestFloat.calculateSector(55467.13f);
+  DOUBLES_EQUAL(testValue, 1.0, compareThreshold);
+
+  testValue = svpwmBaseTestFloat.calculateSector(44941.0f);
+  DOUBLES_EQUAL(testValue, 6.0, compareThreshold);
+
+}
+
 TEST(SvpwmBase, TestFixedPointSingleAngle)
 {
 
